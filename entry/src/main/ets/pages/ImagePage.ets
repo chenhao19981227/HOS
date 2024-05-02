@@ -11,7 +11,7 @@ struct ImagePage {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(()=>{
-            this.message='Hello Master'
+            this.message='Hello World'
           })
         Image('https://pic.huitu.com/pic/20230408/632020_20230408095152974201_0.jpg')
           .width(this.imageWidth)
@@ -36,6 +36,19 @@ struct ImagePage {
           .onClick(()=>{
             let temp: number =this.imageWidth>290?300:this.imageWidth+10
             this.imageWidth=temp
+          })
+        Slider({
+          min: 100,
+          max: 300,
+          value: this.imageWidth,
+          step: 10
+        })
+          .width('80%')
+          .blockColor('#36D')
+          .showTips(true)
+          .trackThickness(6)
+          .onChange(value=>{
+            this.imageWidth=value
           })
       }
       .width('100%')
