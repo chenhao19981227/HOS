@@ -10,7 +10,7 @@ struct Row_Col {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#36D')
+          .fontColor('#ff138fa0')
       }
       .justifyContent(FlexAlign.Center)
       .margin({top:30})
