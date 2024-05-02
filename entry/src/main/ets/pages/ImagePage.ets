@@ -2,7 +2,7 @@
 @Component
 struct ImagePage {
   @State message: string = 'Hello World'
-  @State imageWidth: number = 30
+  @State imageWidth: number = 200
 
   build() {
     Row() {
@@ -25,6 +25,18 @@ struct ImagePage {
           })
         Text($r('app.string.Width_label'))
           .fontSize(20)
+        Button('缩小')
+          .width(80)
+          .onClick(()=>{
+            let temp: number =this.imageWidth<10?0:this.imageWidth-10
+            this.imageWidth=temp
+          })
+        Button('放大')
+          .width(80)
+          .onClick(()=>{
+            let temp: number =this.imageWidth>290?300:this.imageWidth+10
+            this.imageWidth=temp
+          })
       }
       .width('100%')
     }
