@@ -12,6 +12,10 @@ class Item{
     this.discount=discount
   }
 }
+@Extend(Text) function priceText(){
+  .fontSize(18)
+  .fontColor('#F36')
+}
 @Builder function ItemCard(item: Item){
   Row(){
     Image(item.image)
@@ -22,19 +26,15 @@ class Item{
         .fontWeight(FontWeight.Bold)
       if(item.discount){
         Text('原价:￥ '+item.price)
-          .fontSize(18)
-          .fontColor('#F36')
+          .priceText()
           .decoration({type: TextDecorationType.LineThrough})
         Text('折扣价:￥ '+(item.price-item.discount))
-          .fontSize(18)
-          .fontColor('#F36')
+          .priceText()
         Text('折扣价:￥ '+item.discount)
-          .fontSize(18)
-          .fontColor('#F36')
+          .priceText()
       }else{
         Text('￥ '+item.price)
-          .fontSize(18)
-          .fontColor('#F36')
+          .priceText()
       }
     }
     .width('100%')

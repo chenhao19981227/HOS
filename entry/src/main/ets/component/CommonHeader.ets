@@ -2,7 +2,6 @@
 export struct Header {
   private title: ResourceStr
   build() {
-    Column({ space: 8 }) {
       Row() {
         Text(this.title)
           .fontSize(30)
@@ -11,5 +10,4 @@ export struct Header {
       .width('100%')
       .height(30)
     }
-  }
 }
