@@ -48,6 +48,13 @@ class Item{
   .padding(10)
 }
 
+@Styles function fillScreen(){
+  .width('100%')
+  .height('100%')
+  .backgroundColor('#EFEFEF')
+  .padding(20)
+}
+
 @Entry
 @Component
 struct ListItemPage {
@@ -74,9 +81,6 @@ struct ListItemPage {
       .width('100%')
       .layoutWeight(1)
     }
-    .width('100%')
-    .height('100%')
-    .backgroundColor('#EFEFEF')
-    .padding(20)
+    .fillScreen()
   }
 }
