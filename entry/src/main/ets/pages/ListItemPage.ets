@@ -1,3 +1,4 @@
+import { Header } from '../component/CommonHeader'
 class Item{
   name: string
   image: ResourceStr
@@ -24,13 +25,8 @@ struct ListItemPage {
   ]
   build() {
     Column({space: 8}){
-      Row(){
-        Text('商品列表')
-          .fontSize(30)
-          .fontWeight(FontWeight.Bold)
-      }
-      .width('100%')
-      .margin({bottom: 20})
+      Header({title: '商品列表'})
+        .margin({bottom: 20})
       List({space: 8}){
         ForEach(
           this.items,
