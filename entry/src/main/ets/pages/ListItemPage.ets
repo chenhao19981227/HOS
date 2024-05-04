@@ -12,6 +12,42 @@ class Item{
     this.discount=discount
   }
 }
+@Builder function ItemCard(item: Item){
+  Row(){
+    Image(item.image)
+      .width(100)
+    Column({space: 4}){
+      Text(item.name)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+      if(item.discount){
+        Text('原价:￥ '+item.price)
+          .fontSize(18)
+          .fontColor('#F36')
+          .decoration({type: TextDecorationType.LineThrough})
+        Text('折扣价:￥ '+(item.price-item.discount))
+          .fontSize(18)
+          .fontColor('#F36')
+        Text('折扣价:￥ '+item.discount)
+          .fontSize(18)
+          .fontColor('#F36')
+      }else{
+        Text('￥ '+item.price)
+          .fontSize(18)
+          .fontColor('#F36')
+      }
+    }
+    .width('100%')
+    .alignItems(HorizontalAlign.Start)
+    .justifyContent(FlexAlign.SpaceBetween)
+  }
+  .width('100%')
+  .backgroundColor('#FFF')
+  .borderRadius(20)
+  .height(120)
+  .padding(10)
+}
+
 @Entry
 @Component
 struct ListItemPage {
@@ -26,45 +62,12 @@ struct ListItemPage {
   build() {
     Column({space: 8}){
       Header({title: '商品列表'})
-        .margin({bottom: 20})
       List({space: 8}){
         ForEach(
           this.items,
           (item: Item)=>{
             ListItem(){
-              Row(){
-                Image(item.image)
-                  .width(100)
-                Column({space: 4}){
-                  Text(item.name)
-                    .fontSize(20)
-                    .fontWeight(FontWeight.Bold)
-                  if(item.discount){
-                    Text('原价:￥ '+item.price)
-                      .fontSize(18)
-                      .fontColor('#F36')
-                      .decoration({type: TextDecorationType.LineThrough})
-                    Text('折扣价:￥ '+(item.price-item.discount))
-                      .fontSize(18)
-                      .fontColor('#F36')
-                    Text('折扣价:￥ '+item.discount)
-                      .fontSize(18)
-                      .fontColor('#F36')
-                  }else{
-                    Text('￥ '+item.price)
-                      .fontSize(18)
-                      .fontColor('#F36')
-                  }
-                }
-                .width('100%')
-                .alignItems(HorizontalAlign.Start)
-                .justifyContent(FlexAlign.SpaceBetween)
-              }
-              .width('100%')
-              .backgroundColor('#FFF')
-              .borderRadius(20)
-              .height(120)
-              .padding(10)
+              ItemCard(item)
             }
           })
       }
