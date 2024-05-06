@@ -1,4 +1,5 @@
 // 任务
+@Observed
 class Task{
   static id: number=1
   name: string = '任务'+Task.id++
@@ -10,6 +11,11 @@ class Task{
   .backgroundColor(Color.White)
   .borderRadius(15)
   .shadow({radius: 6,color: '#1F000000',offsetX: 2,offsetY: 4})
+}
+// 统一任务完成样式
+@Extend(Text) function finishedTask(){
+  .decoration({type: TextDecorationType.LineThrough})
+  .fontColor('#B1B2B1')
 }
 @Component
 export struct TaskList{
@@ -30,24 +36,13 @@ export struct TaskList{
           this.tasks.push(new Task())
           this.handleTaskChange()
         })
-      List(){
+      .margin({bottom: 10})
+      List({space: 10}){
         ForEach(
           this.tasks,
           (item: Task,index)=>{
             ListItem(){
-              Row(){
-                Text(item.name)
-                  .fontSize(20)
-                Checkbox()
-                  .select(item.finished)
-                  .onChange(val=>{
-                    item.finished=val
-                    this.handleTaskChange()
-                  })
-              }
-              .card()
-              .margin({top:10,bottom:10})
-              .justifyContent(FlexAlign.SpaceBetween)
+              TaskItem({item: item,onTaskChange: this.handleTaskChange.bind(this)})
             }
             .swipeAction({end: this.DeleteTask(index)})
           }
@@ -74,5 +69,28 @@ export struct TaskList{
       this.tasks.splice(index,1)
       this.handleTaskChange()
     })
+  }
+}
+@Component
+struct TaskItem{
+  @ObjectLink item: Task
+  onTaskChange: ()=>void
+  build(){
+    Row(){
+      if(this.item.finished){
+        Text(this.item.name)
+          .finishedTask()
+      }else{
+        Text(this.item.name)
+      }
+      Checkbox()
+        .select(this.item.finished)
+        .onChange(val=>{
+          this.item.finished=val
+          this.onTaskChange()
+        })
+    }
+    .card()
+    .justifyContent(FlexAlign.SpaceBetween)
   }
 }

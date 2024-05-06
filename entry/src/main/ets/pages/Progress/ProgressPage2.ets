@@ -1,4 +1,5 @@
 
+import { Header } from '../../component/CommonHeader'
 import { TaskList } from './TaskList'
 import { TaskStatistics } from './TaskStatistics'
 // 统一卡片样式
@@ -11,6 +12,7 @@ struct ProgressPage {
 
   build(){
     Column(){
+      Header({title: '任务列表页面'})
       TaskStatistics({finishTask: this.finishTask,totalTask: this.totalTask})
       // 新增任务按钮
       TaskList({finishTask: $finishTask,totalTask: $totalTask})
