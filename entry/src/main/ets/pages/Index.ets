@@ -16,7 +16,8 @@ struct Index {
   private routers: RouterInfo[]=[
     new RouterInfo('pages/ImagePage','图片查看页面'),
     new RouterInfo('pages/ListItemPage','商品列表页面'),
-    new RouterInfo('pages/Progress/ProgressPage2','任务列表页面')
+    new RouterInfo('pages/Progress/ProgressPage2','任务列表页面'),
+    new RouterInfo('pages/AnimationPage','动画页面')
   ]
 
   build() {

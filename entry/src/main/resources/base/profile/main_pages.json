@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/ImagePage",
     "pages/ListItemPage",
-    "pages/Progress/ProgressPage2"
+    "pages/Progress/ProgressPage2",
+    "pages/AnimationPage"
   ]
 }
