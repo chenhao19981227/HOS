@@ -19,7 +19,12 @@ struct AnimationPage {
         if(!this.isBegin){
           Button('开始游戏')
             .onClick(()=>{
-              this.isBegin=true
+              animateTo(
+                {duration: 1000},
+                ()=>{
+                  this.isBegin=true
+                }
+              )
             })
         }else{
           Image(this.src)
@@ -28,40 +33,46 @@ struct AnimationPage {
             .width(200)
             .height(200)
             .backgroundColor(Color.Transparent)
+            .transition({
+              type: TransitionType.Insert,
+              opacity: 0,
+              translate: {x: -300}
+            })
             .animation({duration:200})
         }
-        Row(){
-          Button('←')
-            .backgroundColor('#20101010')
-            .onClick(()=>{
-              this.startX-=20
-              this.src=$r('app.media.MatchstickMan_rev')
-            })
-          Column({space: 40}){
-            Button('↑')
-              .backgroundColor('#20101010')
-              .onClick(()=>{
-                this.startY-=20
-              })
-            Button('↓')
-              .backgroundColor('#20101010')
-              .onClick(()=>{
-                this.startY+=20
-              })
-          }
-          Button('→')
-            .backgroundColor('#20101010')
-            .onClick(()=>{
-              this.startX+=20
-              this.src=$r('app.media.MatchstickMan')
-            })
-        }
-        .height(240)
-        .width(240)
-        .position({x:20,y:150})
       }
       .width('100%')
       .height('100%')
+      Row(){
+        Button('←')
+          .backgroundColor('#20101010')
+          .onClick(()=>{
+            this.startX-=20
+            this.src=$r('app.media.MatchstickMan_rev')
+          })
+        Column({space: 40}){
+          Button('↑')
+            .backgroundColor('#20101010')
+            .onClick(()=>{
+              this.startY-=20
+            })
+          Button('↓')
+            .backgroundColor('#20101010')
+            .onClick(()=>{
+              this.startY+=20
+            })
+        }
+        Button('→')
+          .backgroundColor('#20101010')
+          .onClick(()=>{
+            this.startX+=20
+            this.src=$r('app.media.MatchstickMan')
+          })
+      }
+      .height(240)
+      .width(240)
+      .position({x:20,y:150})
+
     }
   }
 }
